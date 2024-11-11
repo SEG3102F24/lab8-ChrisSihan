@@ -1,0 +1,28 @@
+// EmployeesResolver.js
+
+const employees = []; // Replace with your data storage solution
+
+const resolvers = {
+  Query: {
+    employees: () => employees,
+    employee: (_, { id }) => employees.find(emp => emp.id === id),
+  },
+  Mutation: {
+    addEmployee: (_, { name, dateOfBirth, city, salary, gender, email }) => {
+      const newEmployee = {
+        id: String(employees.length + 1),
+        name,
+        dateOfBirth,
+        city,
+        salary,
+        gender,
+        email,
+      };
+      employees.push(newEmployee);
+      return newEmployee;
+    },
+  },
+};
+
+module.exports = resolvers;
+
